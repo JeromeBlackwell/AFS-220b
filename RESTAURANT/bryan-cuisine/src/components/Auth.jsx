@@ -43,7 +43,7 @@ const Auth = () => {
                         btnText='Login'
                         errMSg={errMSg}
                     />
-                    <p onClick={() => toggleForm()} classname='createAccount'>Create Account</p>
+                    <p onClick={() => toggleForm()} className='createAccount'>Create Account</p>
                 </>
                 :
                 <>

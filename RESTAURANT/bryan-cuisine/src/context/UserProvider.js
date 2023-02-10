@@ -1,10 +1,10 @@
-import {useState, createContext, useEffect} from 'react'
+import {useState, createContext, useEffect } from 'react'
 import axios from 'axios'
 
 export const UserContext = createContext()
 
 const userAxios = axios.create()
-userAxios.inteceptors.request.use(config => {
+userAxios.interceptors.request.use(config => {
     const token = localStorage.getItem('token')
     console.log(token)
     config.headers.Authorization = `Bearer ${token}`
@@ -46,13 +46,48 @@ const UserProvider = (props) => {
                 token
             }))
         })
-        .catch(err => handleAuthErr(err.response.data.errMsg))
-
-        return(
-            <UserContext.Provider value = { { ...userState, signUp } }>
-                {props.children}
-            </UserContext.Provider>
-        )
+        .catch(err => handleAuthErr(err.response.data.errMsg))    
     }
+
+    const login = (credentials) => {
+        axios.post('/auth/login', credentials)
+        .then(res => {
+            const {user, token} = res.data
+            localStorage.setItem('token', token)
+            localStorage.setItem('user', JSON.stringify(user))
+            getMyCart()
+            setUserState(prevUserState => ({
+                ...prevUserState,
+                user,
+                token
+            }))
+        })
+        .catch(err => handleAuthErr(err.response.data.errMsg))
+    }
+
+    const getMyCart = () => {
+        // userAxios.get('/api/mycart/user')
+        // .then(res => {
+        //     setUserState(prevState => ({
+        //         ...prevState,
+        //         cart: res.data
+        //     }))
+        // })
+    }
+
+    useEffect(() => {
+        setUserState(prevState => ({
+            ...prevState,
+            user: JSON.parse(localStorage.getItem('user')) || {},
+            token: localStorage.getItem('token') || "",  
+        }))
+        getMyCart()
+    }, [])
+    
+    return(
+        <UserContext.Provider value = { { ...userState, signUp } }>
+            {props.children}
+        </UserContext.Provider>
+    )
 }
 export default UserProvider
