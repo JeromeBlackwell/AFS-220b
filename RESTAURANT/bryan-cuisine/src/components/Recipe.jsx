@@ -1,9 +1,9 @@
-import setLocalStorage from "../helpers/setLocalStorage";
-import deleteLocalStorage from "../helpers/deleteLocalStorage";
+import setLocalStorage from '../helpers/setLocalStorage'
+import deleteLocalStorage from '../helpers/deleteLocalStorage'
 import { useState } from "react";
 
 const Recipe = () => {
-
+    
 
     return(
         <div>

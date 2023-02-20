@@ -32,17 +32,11 @@ const UserProvider = (props) => {
     const signUp = (credentials) => {
         axios.post('/auth/signup', credentials)
         .then(res => {
-            const {user, email, id, token} = res.data
-            localStorage.setItem('email', email)
-            localStorage.setItem('id', id)
+            const { token } = res.data
             localStorage.setItem('token', token)
-            localStorage.setItem('user', JSON.stringify(user))
 
             setUserState(prevUserState => ({
                 ...prevUserState,
-                user,
-                id,
-                email,
                 token
             }))
         })
@@ -54,7 +48,6 @@ const UserProvider = (props) => {
         .then(res => {
             const {user, token} = res.data
             localStorage.setItem('token', token)
-            localStorage.setItem('user', JSON.stringify(user))
             getMyCart()
             setUserState(prevUserState => ({
                 ...prevUserState,
@@ -65,27 +58,36 @@ const UserProvider = (props) => {
         .catch(err => handleAuthErr(err.response.data.errMsg))
     }
 
+    const logout = () =>{
+        localStorage.removeItem('token')
+        setUserState(prevState => ({ ...initState }))
+    }
+
+    const resetAuthErr = () => {
+        setUserState(prevState=>({ ...prevState, errMsg: " "}))
+    }
+
     const getMyCart = () => {
-        // userAxios.get('/api/mycart/user')
-        // .then(res => {
-        //     setUserState(prevState => ({
-        //         ...prevState,
-        //         cart: res.data
-        //     }))
-        // })
+        userAxios.get('/api/shoppingcart')
+        .then(res => {
+            setUserState(prevState => ({
+                ...prevState,
+                cart: res.data
+            }))
+        })
     }
 
     useEffect(() => {
         setUserState(prevState => ({
             ...prevState,
-            user: JSON.parse(localStorage.getItem('user')) || {},
+            user: JSON.parse(localStorage.getItem('recipes')) || {},
             token: localStorage.getItem('token') || "",  
         }))
         getMyCart()
     }, [])
     
     return(
-        <UserContext.Provider value = { { ...userState, signUp } }>
+        <UserContext.Provider value = { { ...userState, signUp, logout, resetAuthErr, handleAuthErr } }>
             {props.children}
         </UserContext.Provider>
     )

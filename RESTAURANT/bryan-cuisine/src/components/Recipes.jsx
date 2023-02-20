@@ -70,6 +70,7 @@ const Recipes = ({ setRecipes, setIsLoading }) =>{
             )
         }
     }
+    
 
     return(
         <div className="recipes">
