@@ -33,7 +33,7 @@ const Auth = () => {
     
     return(
         <div className='landing-page'>
-            <h1 className='sitetitle'>Bryan Cuisine</h1>
+            <h1 className='sitetitle'>BRYAN CUISINE</h1>
             { !toggle ?
                 <>
                     <AuthForm

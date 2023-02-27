@@ -36,7 +36,7 @@ const RenderRecipes = ({recipe, isLoading }) =>{
                 if(response.data.Recipes){
                     console.log(response.data.recipes)
                     setRecipes(response.data.recipes)
-                    setIsLoading(false)
+                    // setIsLoading(false)
                 } else {
                     setIsError(true)
                 }
