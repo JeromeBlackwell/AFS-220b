@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const mysql = require('mysql2')
 const cors = require('cors')
 require('dotenv').config()
 const morgan = require('morgan')
@@ -12,21 +11,6 @@ app.use(express.json())
 app.use(cors())
 app.use(morgan('dev'))
 
-// //MySQL connection
-// const db = mysql.createConnection({
-//     host:'localhost',
-//     user:'root',
-//     password:'localhost69$',
-//     database:'bryaneurocuisine'
-// })
-
-// //Connect to DB
-// db.connect((err) => {
-//     if(err){
-//         throw err
-//     }
-//     console.log('Connected to DB')
-// })
 
 //Routes
 app.use('/auth', require('./routes/authRouter'))

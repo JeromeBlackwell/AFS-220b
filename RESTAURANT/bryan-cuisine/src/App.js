@@ -29,17 +29,30 @@ function App() {
             />
             <Route 
               exact path='/breakfast'
-              element={ <RenderRecipes 
+              element={ <RenderRecipes
+                setIsLoading={setIsLoading} 
+              />}
+            />
+            <Route 
+              exact path='/appetizer'
+              element={ <RenderRecipes
+                setIsLoading={setIsLoading}  
               />}
             />
             <Route 
               exact path='/dinner'
-              element={ <RenderRecipes 
+              element={ <RenderRecipes
+                setIsLoading={setIsLoading}  
+              />}
+            />
+            <Route 
+              exact path='/auth'
+              element={ <Auth 
               />}
             />
             <Route
               exact path='/'
-              element={token ? <Navigate replace to='/cart' /> : <Auth />}
+              element={token ? <Navigate replace to='/home' /> : <Auth />}
             />
           </Routes>
       </div>
