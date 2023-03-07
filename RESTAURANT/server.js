@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const mysql = require('mysql2')
+const cors = require('cors')
 require('dotenv').config()
 const morgan = require('morgan')
 const { expressjwt: jwt } = require('express-jwt')
@@ -8,6 +9,7 @@ const { expressjwt: jwt } = require('express-jwt')
 
 //MiddleWare
 app.use(express.json())
+app.use(cors())
 app.use(morgan('dev'))
 
 // //MySQL connection
@@ -27,8 +29,8 @@ app.use(morgan('dev'))
 // })
 
 //Routes
-// app.use('/auth', require('./routes/authRouter.js'))
-// app.use('/api/', jwt({ secret: process.env.SECRET, algorithms: ['HS256']}))
+app.use('/auth', require('./routes/authRouter'))
+app.use('/api/', jwt({ secret: process.env.SECRET, algorithms: ['HS256']}))
 // app.use('/api/mycart', require('./routes/issueRouter.js'))
 
 

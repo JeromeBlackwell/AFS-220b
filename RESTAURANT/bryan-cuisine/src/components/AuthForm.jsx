@@ -17,7 +17,7 @@ const AuthForm = ( { handleChange, handleSubmit, btnText, inputs, errMsg } ) => 
                     value={inputs.password}
                     name={'password'}
                     onChange={handleChange}
-                    placeholder="Passoword"/>
+                    placeholder="Password"/>
                     <button className="login">{ btnText }</button>
                     <p style={{backgroundColor: 'c#00000', color: '#ffffff', textAlign: 'center'}}>{ errMsg }</p>
             </form>
