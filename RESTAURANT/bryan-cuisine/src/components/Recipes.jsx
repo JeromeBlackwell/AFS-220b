@@ -12,7 +12,7 @@ const Recipes = ({ setRecipes, setIsLoading }) =>{
             setIsLoading(true)
         
         try{
-            let response = await apiRequest('https://api.spoonacular.com/recipes/complexSearch?apiKey=5ca51407f1a649a2b35aef72a28100b6&query=')
+            let response = await apiRequest('https://api.spoonacular.com/recipes/complexSearch?apiKey=a64f315c6ca447b59501cac59dcd64c6&query=')
             setRecipes(response.recipes)
             setIsLoading(false)
         }
@@ -42,7 +42,7 @@ const Recipes = ({ setRecipes, setIsLoading }) =>{
 
         try{
             let q = search
-            let response = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=5ca51407f1a649a2b35aef72a28100b6&query=${q}`)
+            let response = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=a64f315c6ca447b59501cac59dcd64c6&query=${q}`)
             console.log(response.data)
             if(response.data.Recipes){
                 console.log(response.data.recipes)

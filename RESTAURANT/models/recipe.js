@@ -6,12 +6,13 @@ const Recipe = sequelize.define('recipe', {
         type: Sequelize.INTEGER,
         autoincrement: true,
         allowNull: false,
+        primaryKey: true
     },
     recipeID:{
         type: Sequelize.INTEGER,
         autoincrement: false,
         allowNull: false,
-        primaryKey: true
+        
     }
 })
 

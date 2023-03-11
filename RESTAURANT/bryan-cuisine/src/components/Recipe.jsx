@@ -1,8 +1,11 @@
 import { useState } from "react";
+
 import IngredientsFormHandler from './IngredientFormHandler';
 
 const Recipe = ({recipe, _id, img}) => {
     const [editToggle, setEditToggle] = useState(false)
+    
+    
 
     return(
         <div className='recipeDiv'>
@@ -20,11 +23,12 @@ const Recipe = ({recipe, _id, img}) => {
                 <>
                     <IngredientsFormHandler 
                     recipe={recipe}
-                    title={recipe.title}/>
+                    title={recipe.title}
+                    _id={_id}/>
                     <button className='close-btn' onClick={()=> setEditToggle(prevToggle=>!prevToggle)}>Close</button>
                 </>
             }
-
+            
         </div>
     )
 }

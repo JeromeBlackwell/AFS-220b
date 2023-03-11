@@ -2,9 +2,9 @@ const Sequelize = require('sequelize')
 
 
 //Sequelize
-const sequelize = new Sequelize('bryaneurocuisine', 'root', 'localhost69$', {
+const sequelize = new Sequelize('bryaneurocuisine', 'root', 'password', {
     dialect: 'mysql',
-    host: '10.0.0.8',
+    host: 'localhost',
     port: '3306',
     pool: {
         max: 5,

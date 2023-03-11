@@ -3,9 +3,12 @@ const User = require('./models/user')
 const Recipe = require('./models/recipe')
 
 sequelize
-    .authenticate()
+    .sync({force: true})
     .then(() => {
         console.log('Connection Established')
     }).catch(err => {
         console.log('Unable to Connect to DB', err)
     })
+
+User.hasMany(Recipe);
+

@@ -1,5 +1,4 @@
 import Recipe from "./Recipe";
-import Recipes from "./Recipes";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
@@ -21,9 +20,9 @@ const RenderRecipes = ({ isLoading, setIsLoading }) =>{
         )
     }
 
-    const handleSearchSubmitChange = (e) => {
-        setSearch(e.target.value)
-    }
+    // const handleSearchSubmitChange = (e) => {
+    //     setSearch(e.target.value)
+    // }
     
     const handleSearchSubmit = async (e) => {
         // e.preventDefault()
@@ -32,11 +31,11 @@ const RenderRecipes = ({ isLoading, setIsLoading }) =>{
 
             try{
                 let q = search
-                let response = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=5ca51407f1a649a2b35aef72a28100b6&type=${foodType}&query=${q}`)
-                console.log(response.data)
-                if(response.data.recipes){
-                    console.log(response.data.recipes)
-                    setRecipes(response.data.recipes)
+                let response = await apiRequest(`https://api.spoonacular.com/recipes/complexSearch?apiKey=a64f315c6ca447b59501cac59dcd64c6&type=${foodType}&query=${q}`)
+                if(response.data.results){
+                    
+                    setRecipes(response.data.results)
+                    
                     setIsLoading(false)
                 } else {
                     setIsError(true)
@@ -56,7 +55,6 @@ const RenderRecipes = ({ isLoading, setIsLoading }) =>{
     
     
     let mappedRecipes = recipes.map((recipe, i) => {
-        console.log(recipe)
         return (
             <Recipe
                 recipe={recipe}
@@ -68,7 +66,10 @@ const RenderRecipes = ({ isLoading, setIsLoading }) =>{
     })
 
     return(
+        
         <div>
+            {console.log(recipes)}
+            <h1 className="recipe-header">Try Something New</h1>
             {isLoading ? <div className="loading-screen"><h1>Loading</h1></div> : mappedRecipes}
         </div>
     )
