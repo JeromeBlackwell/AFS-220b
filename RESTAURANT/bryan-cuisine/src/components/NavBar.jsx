@@ -9,7 +9,7 @@ const Navbar = () => {
     return(
         <div className='navbar'>
             {token ? <Link to='/myRecipes' className='navlink'>My Recipes</Link> : <Link to='/'></Link>}
-            <Link to='/home' className='navlink'>Home</Link>
+            <Link to='/home' className='navlink' state={{ type: 'drink' }}>Home</Link>
             <Link to='/breakfast' className='navlink' state = {{ type : 'breakfast' }}>Breakfast</Link>
             <Link to='/appetizer' className='navlink' state={{ type: 'appetizer' }}>Appetizers</Link>
             <Link to='/dinner' className='navlink' state = {{ type : 'main-course' }}>Dinner</Link>

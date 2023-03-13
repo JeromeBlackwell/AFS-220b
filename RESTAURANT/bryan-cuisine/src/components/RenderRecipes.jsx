@@ -11,14 +11,6 @@ const RenderRecipes = ({ isLoading, setIsLoading }) =>{
     const location = useLocation()
     const [foodType, setFoodType] = useState('')
 
-    
-    const apiRequest = async (url) =>{
-        return new Promise((resolve, reject) =>
-            axios.get(url)
-            .then(res => resolve(res.data))
-            .catch(err => reject(err))
-        )
-    }
 
     // const handleSearchSubmitChange = (e) => {
     //     setSearch(e.target.value)
@@ -31,11 +23,10 @@ const RenderRecipes = ({ isLoading, setIsLoading }) =>{
 
             try{
                 let q = search
-                let response = await apiRequest(`https://api.spoonacular.com/recipes/complexSearch?apiKey=a64f315c6ca447b59501cac59dcd64c6&type=${foodType}&query=${q}`)
+                let response = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=a64f315c6ca447b59501cac59dcd64c6&type=${foodType}`)
+                console.log(response.data.results)
                 if(response.data.results){
-                    
                     setRecipes(response.data.results)
-                    
                     setIsLoading(false)
                 } else {
                     setIsError(true)

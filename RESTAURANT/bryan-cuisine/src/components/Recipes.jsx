@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
+// import Recipe from "./Recipe";
 
-const Recipes = ({ setRecipes, setIsLoading }) =>{
+const Recipes = ({setRecipes, setIsLoading }) =>{
     const [search, setSearch] = useState('')
     const [isError, setIsError] = useState(false)
+    // const [recipes, setRecipes] = useState([])
 
     useEffect(()=>{
         const getData = async () =>{
@@ -43,10 +45,10 @@ const Recipes = ({ setRecipes, setIsLoading }) =>{
         try{
             let q = search
             let response = await axios(`https://api.spoonacular.com/recipes/complexSearch?apiKey=a64f315c6ca447b59501cac59dcd64c6&query=${q}`)
-            console.log(response.data)
-            if(response.data.Recipes){
-                console.log(response.data.recipes)
-                setRecipes(response.data.recipes)
+            console.log(response.data.results)
+            if(response.data.results){
+                console.log(response.data.results)
+                setRecipes(response.data.results)
                 setIsLoading(false)
             } else {
                 setIsError(true)
@@ -57,6 +59,17 @@ const Recipes = ({ setRecipes, setIsLoading }) =>{
             console.log(err)
         }
     }
+    
+    // let mappedRecipes = recipes.map((recipe, i) => {
+    //     return (
+    //         <Recipe
+    //             recipe={recipe}
+    //             key={i}
+    //             _id={recipe.id}
+    //             img={recipe.image}
+    //         />
+    //     )
+    // })
 
     const renderError = () =>{
         if(isError){
@@ -74,9 +87,9 @@ const Recipes = ({ setRecipes, setIsLoading }) =>{
 
     return(
         <div className="recipes">
-            <form className="form">
+            <form className="recipe-form">
                 <input 
-                    className="search-input"
+                    className="recipe-search"
                     value={search}
                     onChange={handleSearchSubmitChange}
                     type='text'
@@ -84,6 +97,7 @@ const Recipes = ({ setRecipes, setIsLoading }) =>{
                 />
                 <button type="submit" className="search-btn" onClick={handleSearchSubmit}>Search</button>
             </form>
+            {/* {mappedRecipes} */}
             {renderError()}
         </div>
     )

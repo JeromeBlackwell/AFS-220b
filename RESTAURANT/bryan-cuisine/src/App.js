@@ -1,7 +1,6 @@
 import { Routes , Route, Navigate } from 'react-router-dom'
 import Navbar from './components/NavBar'
 import Auth from './components/Auth'
-import Home from './components/Home';
 import RenderRecipes from './components/RenderRecipes';
 import { useContext, useState } from 'react';
 import { UserContext } from './context/UserProvider';
@@ -20,10 +19,7 @@ function App() {
           <Routes>
             <Route 
               exact path='/home'
-              element={ <Home 
-              recipes={recipes}
-              isLoading={isLoading}
-              setRecipes={setRecipes}
+              element={ <RenderRecipes
               setIsLoading={setIsLoading}
               />}
             />

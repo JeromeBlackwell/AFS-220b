@@ -4,7 +4,7 @@ const sequelize = require('./index')
 const Recipe = sequelize.define('recipe', {
     id:{
         type: Sequelize.INTEGER,
-        autoincrement: true,
+        autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },

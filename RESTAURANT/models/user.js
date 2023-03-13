@@ -18,4 +18,5 @@ const User = sequelize.define('customer', {
     },
 })
 
+
 module.exports = User

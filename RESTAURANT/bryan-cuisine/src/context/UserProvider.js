@@ -87,7 +87,7 @@ const UserProvider = (props) => {
     }, [])
     
     return(
-        <UserContext.Provider value = { { ...userState, signUp, logout, resetAuthErr, handleAuthErr } }>
+        <UserContext.Provider value = { { ...userState, signUp, login, logout, resetAuthErr, handleAuthErr } }>
             {props.children}
         </UserContext.Provider>
     )

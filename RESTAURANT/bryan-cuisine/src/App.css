@@ -107,11 +107,13 @@ button:hover{
 
 .recipeDiv {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 2% 15% 5% 20%;
     background-color: rgb(88, 138, 78);
-    width: 60%;
+    width: 70;
+    height: 75vh;
     border-radius: 10px;
     
 }
@@ -127,8 +129,10 @@ button:hover{
 
 .recipes {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 2vh;
 }
 
 img {
@@ -170,4 +174,27 @@ img {
     width: 20%;
     justify-content: center;
     margin-left: 10%;
+}
+
+.recipe-search{
+    background-color: white;
+    border: 2px solid black;
+    width: 100%;
+    scale: 130%;
+}
+
+.recipe-form {
+    margin-top: 2%;
+    padding: 2%;
+}
+
+.ingredients-form{
+    align-items: center;
+    font-size: x-small;
+}
+
+.ingredients-title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
