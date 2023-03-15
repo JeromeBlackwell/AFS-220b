@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const sequelize = require('./index')
 
-const User = sequelize.define('customer', {
+const User = sequelize.define('User', {
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -18,5 +18,6 @@ const User = sequelize.define('customer', {
     },
 })
 
+console.log(typeof(User))
 
 module.exports = User

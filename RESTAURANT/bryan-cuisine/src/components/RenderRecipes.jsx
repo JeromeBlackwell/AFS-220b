@@ -11,6 +11,7 @@ const RenderRecipes = ({ isLoading, setIsLoading }) =>{
     const location = useLocation()
     const [foodType, setFoodType] = useState('')
 
+    console.log(location)
 
     // const handleSearchSubmitChange = (e) => {
     //     setSearch(e.target.value)
@@ -40,9 +41,14 @@ const RenderRecipes = ({ isLoading, setIsLoading }) =>{
 
 
         useEffect(()=>{
-            setFoodType(location.state.type)
-            handleSearchSubmit()
-        },[location.state.type])
+            if(location.state === null){
+                setFoodType('drinks')
+                handleSearchSubmit()
+            } else{
+                setFoodType(location.state.type)
+                handleSearchSubmit()
+            } 
+        },[location.state])
     
     
     let mappedRecipes = recipes.map((recipe, i) => {

@@ -2,36 +2,29 @@ const express = require('express')
 const authRouter = express.Router()
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
-const Recipe = require('../models/recipe')
+const sequelize = require('../models/index')
+// const User = sequelize.models.User
+// console.log(typeof(sequelize.models.recipe))
+// const allUsers = sequelize.models.User.findAll()
+// console.log(allUsers) 
 
 // Sign Up
-authRouter.post("/signup", (req, res, next) => {
-    console.log('BREAKPOINT 1')
-    User.findAll({ where: {username :req.body.username.toLowerCase()} }, (err, user) => {
-        console.log('BREAKPOINT 2')
-        if(err){
-            res.status(500)
-            return next(err)
+authRouter.post("/signup", async (req, res, next) => {
+    
+    const allUsers = await sequelize.models.User.findOne({ where: {username : req.body.username}})
+        console.log(allUsers)
+    if (allUsers === null){
+        console.log('Not Found')
+        const newUser = await sequelize.models.User.create({username: req.body.username, password: req.body.password})
+        if (newUser === null){
+            return res.status(500)
+        } else {
+            const token = jwt.sign(newUser.username, process.env.SECRET)
+            return res.status(201).send({token, user: newUser.username })
         }
-        if(user){
-            res.status(403)
-            return next(new Error("Username already taken"))
-        }
-        const newUser = User.build({username: req.body.username, password: req.body.password})
-        newUser.save((err, savedUser) => {
-            console.log('USER SAVED')
-            if(err){
-                res.status(500)
-                return next(err)
-            } console.log(savedUser)
-            const token = jwt.sign(savedUser.withoutPassword(), process.env.SECRET)
-            return res.status(201).send({token, user: savedUser.withoutPassword() })
-        })
-        return res.status(200)
-    })
-    // console.log('data')
-    // const token = jwt.sign( 'emailplaceholder', process.env.SECRET )
-    // return res.status(201).send({ token: token })
+    } else {
+        return res.status(403).send({errmessage: 'Username Already Exits'})
+    }
 })
 
 // Login
