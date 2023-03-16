@@ -12,7 +12,6 @@ const Recipe = sequelize.define('recipe', {
         type: Sequelize.INTEGER,
         autoincrement: false,
         allowNull: false,
-        
     }
 })
 

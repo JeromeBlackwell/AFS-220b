@@ -1,6 +1,6 @@
 const deleteLocalStorage = () => {
 
-    localStorage.removeItem('recipes')
+    localStorage.remove('recipes')
 }
 
 export default deleteLocalStorage

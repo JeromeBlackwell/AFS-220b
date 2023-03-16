@@ -38,7 +38,8 @@ const Recipe = ({recipe, _id, img}) => {
                 </>
                 :
                 <>
-                    <IngredientsFormHandler 
+                    <IngredientsFormHandler
+                    className='ingredient-handler'
                     recipe={recipe}
                     title={recipe.title}
                     ingredients={ingredients}

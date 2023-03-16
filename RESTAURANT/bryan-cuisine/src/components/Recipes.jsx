@@ -60,17 +60,7 @@ const Recipes = ({setRecipes, setIsLoading }) =>{
         }
     }
     
-    // let mappedRecipes = recipes.map((recipe, i) => {
-    //     return (
-    //         <Recipe
-    //             recipe={recipe}
-    //             key={i}
-    //             _id={recipe.id}
-    //             img={recipe.image}
-    //         />
-    //     )
-    // })
-
+    
     const renderError = () =>{
         if(isError){
             return(
